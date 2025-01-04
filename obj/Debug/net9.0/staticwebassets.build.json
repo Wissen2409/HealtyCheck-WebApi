@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "22pfQDH9+LcKl46R9zIeK6ZZEdT3SBw8lg1gQcbStkY=",
+  "Source": "HealtyCheck-WebApi",
+  "BasePath": "_content/HealtyCheck-WebApi",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}
