@@ -19,15 +19,15 @@ builder.Services.AddControllers();
 
 builder.Services.AddHealthChecks()
 .AddSqlServer(
-    connectionString:"Server=db11596.public.databaseasp.net; Database=db11596; User Id=db11596; Password=i#5G!Tc2p6J+; Encrypt=True; TrustServerCertificate=True; MultipleActiveResultSets=True;",
-    healthQuery:"select 1;",
-    name:"Sql Server",
-    tags:new[]{"db","sql"})
+    connectionString: "Server=db11596.public.databaseasp.net; Database=db11596; User Id=db11596; Password=i#5G!Tc2p6J+; Encrypt=True; TrustServerCertificate=True; MultipleActiveResultSets=True;",
+    healthQuery: "select 1;",
+    name: "Sql Server",
+    tags: new[] { "db", "sql" })
 .AddRedis(
-    redisConnectionString:"redis-11810.c300.eu-central-1-1.ec2.redns.redis-cloud.com:11810",
-    name:"Redis"
-    )
-.AddCheck("Custom Check", () =>
+    redisConnectionString: "redis-11810.c300.eu-central-1-1.ec2.redns.redis-cloud.com:11810",
+    name: "Redis"
+    );
+/*.AddCheck("Custom Check", () =>
 {
 
     // saniye değerini 2 ye göre mod alıp random healty yada unhealty mesajı verelim
@@ -35,7 +35,10 @@ builder.Services.AddHealthChecks()
      HealthCheckResult.Healthy("Custom Health succeeded") :
      HealthCheckResult.Unhealthy("Custon HealthCheck failed");
 
-});
+});*/
+
+// healthcheck ekranını tasarımlaştırmak için!!
+builder.Services.AddHealthChecksUI().AddInMemoryStorage();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -49,10 +52,10 @@ app.UseHttpsRedirection();
 
 app.MapControllers();
 
+app.UseHealthChecksUI(options =>
+{
+    options.UIPath = "/health-ui";
+});
 app.MapHealthChecks("/healty");
 app.Run();
 
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
