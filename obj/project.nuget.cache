@@ -1,12 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "kjck+wV91tY=",
+  "dgSpecHash": "FHxRVcyfQLw=",
   "success": true,
   "projectFilePath": "/Users/emrahelis/Downloads/HealtyCheck-WebApi/HealtyCheck-WebApi.csproj",
   "expectedPackageFiles": [
     "/Users/emrahelis/.nuget/packages/aspnetcore.healthchecks.redis/9.0.0/aspnetcore.healthchecks.redis.9.0.0.nupkg.sha512",
     "/Users/emrahelis/.nuget/packages/aspnetcore.healthchecks.sqlserver/9.0.0/aspnetcore.healthchecks.sqlserver.9.0.0.nupkg.sha512",
     "/Users/emrahelis/.nuget/packages/aspnetcore.healthchecks.ui/9.0.0/aspnetcore.healthchecks.ui.9.0.0.nupkg.sha512",
+    "/Users/emrahelis/.nuget/packages/aspnetcore.healthchecks.ui.client/9.0.0/aspnetcore.healthchecks.ui.client.9.0.0.nupkg.sha512",
     "/Users/emrahelis/.nuget/packages/aspnetcore.healthchecks.ui.core/9.0.0/aspnetcore.healthchecks.ui.core.9.0.0.nupkg.sha512",
     "/Users/emrahelis/.nuget/packages/aspnetcore.healthchecks.ui.data/9.0.0/aspnetcore.healthchecks.ui.data.9.0.0.nupkg.sha512",
     "/Users/emrahelis/.nuget/packages/aspnetcore.healthchecks.ui.inmemory.storage/9.0.0/aspnetcore.healthchecks.ui.inmemory.storage.9.0.0.nupkg.sha512",
@@ -64,6 +65,7 @@
     "/Users/emrahelis/.nuget/packages/microsoft.sqlserver.server/1.0.0/microsoft.sqlserver.server.1.0.0.nupkg.sha512",
     "/Users/emrahelis/.nuget/packages/mono.texttemplating/2.2.1/mono.texttemplating.2.2.1.nupkg.sha512",
     "/Users/emrahelis/.nuget/packages/pipelines.sockets.unofficial/2.2.8/pipelines.sockets.unofficial.2.2.8.nupkg.sha512",
+    "/Users/emrahelis/.nuget/packages/restsharp/112.1.1-alpha.0.4/restsharp.112.1.1-alpha.0.4.nupkg.sha512",
     "/Users/emrahelis/.nuget/packages/stackexchange.redis/2.7.4/stackexchange.redis.2.7.4.nupkg.sha512",
     "/Users/emrahelis/.nuget/packages/system.clientmodel/1.0.0/system.clientmodel.1.0.0.nupkg.sha512",
     "/Users/emrahelis/.nuget/packages/system.codedom/4.4.0/system.codedom.4.4.0.nupkg.sha512",

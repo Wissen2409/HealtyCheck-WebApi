@@ -1,5 +1,6 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using HealthChecks.UI.Client;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,6 +20,13 @@ builder.Services.AddControllers();
 
 // veri tabanı bağımlılığını ekleyelim!!
 
+
+builder.Services.AddHealthChecksUI(option=>{
+
+option.AddHealthCheckEndpoint("Health Check","/health");
+
+}).AddInMemoryStorage();
+
 builder.Services.AddHealthChecks()
 .AddSqlServer(
     connectionString: "Server=db11596.public.databaseasp.net; Database=db11596; User Id=db11596; Password=i#5G!Tc2p6J+; Encrypt=True; TrustServerCertificate=True; MultipleActiveResultSets=True;",
@@ -28,7 +36,8 @@ builder.Services.AddHealthChecks()
 .AddRedis(
     redisConnectionString: "redis-11810.c300.eu-central-1-1.ec2.redns.redis-cloud.com:11810",
     name: "Redis"
-    );
+    )
+.AddCheck<ApiHealthCheck>("Rick And Morty Api Health Check");
 /*.AddCheck("Custom Check", () =>
 {
 
@@ -58,11 +67,11 @@ app.UseHealthChecksUI(options =>
 {
     options.UIPath = "/health-ui";
 });
-app.MapHealthChecks("/healty", new Microsoft.AspNetCore.Diagnostics.HealthChecks.HealthCheckOptions
+app.MapHealthChecks("/health", new Microsoft.AspNetCore.Diagnostics.HealthChecks.HealthCheckOptions
 {
-    ResponseWriter = async (context, report) =>
+    ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+    /*ResponseWriter =  async (context, report) =>
     {
-
         var value = report.Entries.Select(s => new HealthCheckModel
         {
             Key = s.Key,
@@ -75,7 +84,7 @@ app.MapHealthChecks("/healty", new Microsoft.AspNetCore.Diagnostics.HealthChecks
             WriteIndented = true,
             DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
         });
-    }
+    }*/
 });
 app.Run();
 
