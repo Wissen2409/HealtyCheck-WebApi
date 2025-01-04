@@ -1,3 +1,5 @@
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -56,6 +58,24 @@ app.UseHealthChecksUI(options =>
 {
     options.UIPath = "/health-ui";
 });
-app.MapHealthChecks("/healty");
+app.MapHealthChecks("/healty", new Microsoft.AspNetCore.Diagnostics.HealthChecks.HealthCheckOptions
+{
+    ResponseWriter = async (context, report) =>
+    {
+
+        var value = report.Entries.Select(s => new HealthCheckModel
+        {
+            Key = s.Key,
+            Value = s.Value.Status.ToString(),
+             Exeption =  s.Value.Exception?.Message,
+        });
+        context.Response.ContentType = "application/json";
+        await context.Response.WriteAsJsonAsync(value, new JsonSerializerOptions
+        {
+            WriteIndented = true,
+            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+        });
+    }
+});
 app.Run();
 
